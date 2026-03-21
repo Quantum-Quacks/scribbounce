@@ -1,4 +1,4 @@
-# GDD — Draw Jump
+# GDD — Scribbounce
 ### "Dibuja el camino, el pato hace el resto"
 
 **Versión:** 0.1 (Draft)
@@ -663,4 +663,4 @@ Al expirar una línea:
 
 ---
 
-*GDD v0.2 — Draw Jump — Generado con base en `bouncingtothetop` (Godot 4.6)*
+*GDD v0.3 — Scribbounce — Generado con base en `bouncingtothetop` (Godot 4.6)*

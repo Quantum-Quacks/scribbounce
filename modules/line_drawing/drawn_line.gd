@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 	# Fade out in last FADE_START seconds
 	var remaining := lifetime - _timer
 	if remaining < FADE_START:
-		var alpha := clamp(remaining / FADE_START, 0.0, 1.0)
+		var alpha := clampf(remaining / FADE_START, 0.0, 1.0)
 		if _visual:
 			var c := _visual.default_color
 			_visual.default_color = Color(c.r, c.g, c.b, alpha)

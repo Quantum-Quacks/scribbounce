@@ -14,8 +14,17 @@ var _chunks_generated: int = 0
 
 
 func _ready() -> void:
-	_spike_scene = load("res://modules/world_generator/spike.tscn")
-	# Generate 4 initial chunks downward from y=200
+	_spike_scene = load("res://modules/world_generator/spike.tscn") as PackedScene
+	call_deferred("_initial_generate")
+
+
+func _initial_generate() -> void:
+	# Fallback if NodePath export didn't resolve (common in hand-written .tscn)
+	if not is_instance_valid(world_node):
+		world_node = get_parent().get_node_or_null("World") as Node2D
+	if not world_node:
+		push_error("WorldGenerator: world_node not found")
+		return
 	for i in range(4):
 		_generate_chunk(200.0 + i * CHUNK_HEIGHT)
 	_generated_top = 200.0

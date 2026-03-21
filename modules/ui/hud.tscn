@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://modules/ui/hud.gd" id="1_script"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 400.0
+offset_bottom = 150.0
+
+[node name="HeightLabel" type="Label" parent="Panel/VBox"]
+unique_name_in_owner = true
+text = "0m"
+theme_override_font_sizes/font_size = 36
+
+[node name="InkLabel" type="Label" parent="Panel/VBox"]
+unique_name_in_owner = true
+text = "Ink: 100%"
+theme_override_font_sizes/font_size = 24
+
+[node name="InkBar" type="ProgressBar" parent="Panel/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300.0, 20.0)
+max_value = 100.0
+value = 100.0

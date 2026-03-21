@@ -1,0 +1,34 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scenes/game_scene.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://modules/duck_player/duck_player.tscn" id="2_duck"]
+[ext_resource type="Script" path="res://modules/camera/simple_camera.gd" id="3_cam"]
+[ext_resource type="Script" path="res://modules/line_drawing/line_drawing_system.gd" id="4_lines"]
+[ext_resource type="Script" path="res://modules/world_generator/world_generator.gd" id="5_world"]
+[ext_resource type="PackedScene" path="res://modules/ui/hud.tscn" id="6_hud"]
+[ext_resource type="PackedScene" path="res://modules/ui/death_screen.tscn" id="7_death"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="DuckPlayer" parent="." instance=ExtResource("2_duck")]
+position = Vector2(540.0, 1600.0)
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("3_cam")
+target = NodePath("../DuckPlayer")
+
+[node name="LineDrawingSystem" type="Node2D" parent="."]
+script = ExtResource("4_lines")
+world_node = NodePath("../World")
+
+[node name="WorldGenerator" type="Node" parent="."]
+script = ExtResource("5_world")
+world_node = NodePath("../World")
+camera = NodePath("../Camera")
+
+[node name="HUD" parent="." instance=ExtResource("6_hud")]
+
+[node name="DeathScreen" parent="." instance=ExtResource("7_death")]

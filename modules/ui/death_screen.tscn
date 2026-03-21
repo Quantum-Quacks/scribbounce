@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://modules/ui/death_screen.gd" id="1_script"]
+
+[node name="DeathScreen" type="CanvasLayer"]
+layer = 50
+visible = false
+script = ExtResource("1_script")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+
+[node name="TitleLabel" type="Label" parent="Panel/VBox"]
+text = "YOU DIED"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+
+[node name="HeightLabel" type="Label" parent="Panel/VBox"]
+unique_name_in_owner = true
+text = "Height: 0m"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 32
+
+[node name="RestartButton" type="Button" parent="Panel/VBox"]
+unique_name_in_owner = true
+text = "Try Again"

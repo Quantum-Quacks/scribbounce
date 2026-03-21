@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://modules/duck_player/scripts/duck_player.gd" id="1_script"]
+[ext_resource type="Script" path="res://modules/duck_player/components/input_component.gd" id="2_input"]
+[ext_resource type="Script" path="res://modules/duck_player/components/physics_component.gd" id="3_physics"]
+[ext_resource type="Script" path="res://modules/duck_player/components/animation_component.gd" id="4_anim"]
+[ext_resource type="Script" path="res://modules/duck_player/components/effects_component.gd" id="5_effects"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ducks/banana_01.png" id="6_tex"]
+[ext_resource type="PhysicsMaterial" path="res://modules/duck_player/physics_materials/duck_player_physic_material.tres" id="7_mat"]
+
+[sub_resource type="CircleShape2D" id="1_circle"]
+radius = 30.0
+
+[node name="DuckPlayer" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 1
+lock_rotation = true
+physics_material_override = ExtResource("7_mat")
+script = ExtResource("1_script")
+
+[node name="InputComponent" type="Node" parent="."]
+script = ExtResource("2_input")
+
+[node name="PhysicsComponent" type="Node" parent="."]
+script = ExtResource("3_physics")
+horizontal_factor = 0.0
+
+[node name="AnimationComponent" type="Node" parent="."]
+script = ExtResource("4_anim")
+
+[node name="EffectsComponent" type="Node" parent="."]
+script = ExtResource("5_effects")
+
+[node name="Skins" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("6_tex")
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1_circle")

@@ -1,43 +1,37 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene format=3 uid="uid://dt2k31adabmwp"]
 
-[ext_resource type="Script" path="res://modules/duck_player/scripts/duck_player.gd" id="1_script"]
-[ext_resource type="Script" path="res://modules/duck_player/components/input_component.gd" id="2_input"]
-[ext_resource type="Script" path="res://modules/duck_player/components/physics_component.gd" id="3_physics"]
-[ext_resource type="Script" path="res://modules/duck_player/components/animation_component.gd" id="4_anim"]
-[ext_resource type="Script" path="res://modules/duck_player/components/effects_component.gd" id="5_effects"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ducks/banana_01.png" id="6_tex"]
-[ext_resource type="PhysicsMaterial" path="res://modules/duck_player/physics_materials/duck_player_physic_material.tres" id="7_mat"]
+[ext_resource type="Script" uid="uid://c185w2ac55uq0" path="res://modules/duck_player/scripts/duck_player.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b8i0jcmgkgix2" path="res://modules/duck_player/components/physics_component.gd" id="3_physics"]
+[ext_resource type="Script" uid="uid://bo2amiunjj7n8" path="res://modules/duck_player/components/animation_component.gd" id="4_anim"]
+[ext_resource type="Script" uid="uid://ww0y675jrp5x" path="res://modules/duck_player/components/effects_component.gd" id="5_effects"]
+[ext_resource type="Texture2D" uid="uid://bsh2vlexakk85" path="res://assets/sprites/ducks/banana_01.png" id="6_tex"]
+[ext_resource type="PhysicsMaterial" uid="uid://dk8yw4v2p5qfa" path="res://modules/duck_player/physics_materials/duck_player_physic_material.tres" id="7_mat"]
 
 [sub_resource type="CircleShape2D" id="1_circle"]
 radius = 30.0
 
-[node name="DuckPlayer" type="RigidBody2D"]
+[node name="DuckPlayer" type="RigidBody2D" unique_id=388440687]
 collision_layer = 2
-collision_mask = 1
-lock_rotation = true
 physics_material_override = ExtResource("7_mat")
+lock_rotation = true
 script = ExtResource("1_script")
 
-[node name="InputComponent" type="Node" parent="."]
-script = ExtResource("2_input")
-
-[node name="PhysicsComponent" type="Node" parent="."]
+[node name="PhysicsComponent" type="Node" parent="." unique_id=1003083414]
 script = ExtResource("3_physics")
-horizontal_factor = 0.0
 
-[node name="AnimationComponent" type="Node" parent="."]
+[node name="AnimationComponent" type="Node" parent="." unique_id=673358780]
 script = ExtResource("4_anim")
 
-[node name="EffectsComponent" type="Node" parent="."]
+[node name="EffectsComponent" type="Node" parent="." unique_id=1354167484]
 script = ExtResource("5_effects")
 
-[node name="Skins" type="Sprite2D" parent="."]
+[node name="Skins" type="Sprite2D" parent="." unique_id=332660341]
 unique_name_in_owner = true
+scale = Vector2(0.078125, 0.078125)
 texture = ExtResource("6_tex")
-scale = Vector2(0.5, 0.5)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=969371354]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=415370075]
 shape = SubResource("1_circle")

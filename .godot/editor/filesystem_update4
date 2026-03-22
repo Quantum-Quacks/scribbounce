@@ -1,0 +1,4 @@
+res://modules/line_drawing/drawn_line.gd
+res://modules/world_generator/world_generator.gd
+res://scenes/game_scene.tscn
+res://modules/duck_player/duck_player.tscn

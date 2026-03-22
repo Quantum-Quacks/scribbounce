@@ -6,7 +6,7 @@ class_name WorldGenerator
 
 const CHUNK_HEIGHT: float = 800.0
 const GENERATE_AHEAD: int = 2
-const CLEAN_BEHIND: int = 2
+const SPAWN_Y: float = 1600.0  # Duck spawn — no spikes within one chunk below this
 
 var _spike_scene: PackedScene
 var _generated_top: float = 0.0
@@ -19,15 +19,15 @@ func _ready() -> void:
 
 
 func _initial_generate() -> void:
-	# Fallback if NodePath export didn't resolve (common in hand-written .tscn)
 	if not is_instance_valid(world_node):
 		world_node = get_parent().get_node_or_null("World") as Node2D
 	if not world_node:
 		push_error("WorldGenerator: world_node not found")
 		return
+	# Generate 4 chunks upward starting from y=0, well above the duck spawn at y=1600
 	for i in range(4):
-		_generate_chunk(200.0 + i * CHUNK_HEIGHT)
-	_generated_top = 200.0
+		_generate_chunk(-i * CHUNK_HEIGHT)
+	_generated_top = -4.0 * CHUNK_HEIGHT
 
 
 func _process(_delta: float) -> void:
@@ -36,13 +36,17 @@ func _process(_delta: float) -> void:
 
 	var cam_top := camera.global_position.y - 960.0
 
-	# Generate ahead
+	# Generate ahead of the camera as duck moves upward
 	while _generated_top > cam_top - GENERATE_AHEAD * CHUNK_HEIGHT:
 		_generated_top -= CHUNK_HEIGHT
 		_generate_chunk(_generated_top)
 
 
 func _generate_chunk(chunk_y: float) -> void:
+	# Safety: never spawn spikes in the area around the duck spawn point
+	if chunk_y > SPAWN_Y - CHUNK_HEIGHT:
+		return
+
 	_chunks_generated += 1
 	var height_m := int(-chunk_y / 250.0)
 
